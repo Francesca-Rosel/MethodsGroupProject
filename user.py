@@ -12,5 +12,4 @@ class user_class:
   def User(self, databaseName, tableName):
     self.databaseName = databaseName
     self. tableName = tableName
-  
 user = user_class()
