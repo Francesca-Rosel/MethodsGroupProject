@@ -11,5 +11,5 @@ class user_class:
     self.loggedIn = loggedIn
   def User(self, databaseName, tableName):
     self.databaseName = databaseName
-    self. tableName = tableName
+    self.tableName = tableName
 user = user_class()
