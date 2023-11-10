@@ -1,10 +1,21 @@
 # user class. Tommy
+import sqlite3
+
+# connect to the database
+conn = sqlite3.connect('users.db')
+
+# create a cursor object
+c = conn.cursor()
+
+# create a table
+c.execute('''CREATE TABLE userTable (UserID INT PRIMARY KEY NOT NULL, Email TEXT NOT NULL,
+            Password TEXT NOT NULL, FirstName TEXT NOT NULL, LastName TEXT NOT NULL,
+            Address TEXT NOT NULL, City TEXT NOT NULL, State TEXT NOT NULL, Zip INT NOT NULL,
+            Payment TEXT NOT NULL)''')
+
 class user_class:
-  databaseName = ""
-  tableName = ""
-  userID = ""
-  loggedIn = False
-  def __init__(self, databaseName, tableName, userID, loggedIn):
+
+  def __init__(self, databaseName = "", tableName = "", userID = "", loggedIn = False):
     self.databaseName = databaseName
     self.tableName = tableName
     self.userID = userID
@@ -14,4 +25,20 @@ class user_class:
     self.databaseName = databaseName
     self.tableName = tableName
 
-user = user_class()
+  def login(self):
+    return False
+
+  def logout(self):
+      return False
+
+  def viewAccountInformation(self):
+      print()
+
+  def createAccount(self):
+      print()
+
+  def getLoggedIn(self):
+      return self.loggedIn
+
+  def getUserID(self):
+      return self.userID
