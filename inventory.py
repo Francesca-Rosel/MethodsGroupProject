@@ -3,6 +3,7 @@ import sqlite3
 
 db = sqlite3.connect("inventory.db")
 c = db.cursor()
+#finish and test database commands
 c.execute(''' CREATE TABLE inventoryTable ()''')
 
 class Inventory:
