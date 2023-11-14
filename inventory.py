@@ -1,10 +1,10 @@
-# inventory class
+# inventory class - Amelia
 import sqlite3
 
 db = sqlite3.connect("inventory.db")
 c = db.cursor()
-#finish and test database commands
-c.execute(''' CREATE TABLE inventoryTable ()''')
+#database commands
+c.execute(''' CREATE TABLE inventory (ISBN TEXT NOT NULL,Title TEXT NOT NULL,Author TEXT NOT NULL,Genre TEXT NOT NULL,Pages TEXT NOT NULL,releaseData, TEXT NOT NULL,Stock TEXT NOT NULL,PRIMARY KEY (ISBN) )''')
 
 class Inventory:
     # initializes
