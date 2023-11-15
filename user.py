@@ -43,6 +43,7 @@ class user_class:
         if ((attemptUser == loginInfo[num][0]) and (attemptPassword == loginInfo[num][1])):
             self.userID = attemptUser
             print("Logged In Successfully\n")
+            self.loggedIn = True
             return True
         num += 1
     print("Login Failed. Check your UserID and Password! Try Again. \n")
