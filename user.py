@@ -50,13 +50,50 @@ class user_class:
     return False
 
   def logout(self):
-      return False
+    self.userID = ""
+    self.loggedIn = False
+    return False
 
   def viewAccountInformation(self):
-      print()
+    if (self.userID != ""):
+      c.execute('''SELECT * FROM userTable''')
+      accountInfo = c.fetchall()
 
+      num = 0
+      for info in accountInfo:
+        if(self.userID == accountInfo[num][0]):
+          print("UserID: ", accountInfo[num][0])
+          print("Email: ", accountInfo[num][1])
+          print("Password: ", accountInfo[num][2])
+          print("First Name: ", accountInfo[num][3])
+          print("Last Name: ", accountInfo[num][4])
+          print("Address: ", accountInfo[num][5])
+          print("City: ", accountInfo[num][6])
+          print("State: ", accountInfo[num][7])
+          print("Zip: ", accountInfo[num][8])
+          print("Payment: ", accountInfo[num][9], "\n")
+          break
+
+        num += 1
   def createAccount(self):
-      print()
+    print("Thank you for joining! Let's get started with some basic information about you.")
+
+    newId = input("Enter a UserID: ")
+    newEmail = input("Enter a valid email: ")
+    newPassword = input("Enter a password: ")
+    newFirst = input("Enter your first name: ")
+    newLast = input("Enter your last name: ")
+    newAdd = input("Enter your street address: ")
+    newCity = input("Enter your city: ")
+    newState = input("Enter your state: ")
+    newZip = input("Enter your zip code: ")
+    newPay = input("Enter your payment type: ")
+
+    query = 'INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES '
+    query += '(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' % (newId, newEmail, newPassword, newFirst, newLast, newAdd, newCity, newState, newZip, newPay)
+
+    c.execute(query)
+    db.commit()
 
   def getLoggedIn(self):
       return self.loggedIn
