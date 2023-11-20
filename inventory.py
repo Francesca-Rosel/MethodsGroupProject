@@ -1,7 +1,7 @@
 # inventory class - Amelia
 import sqlite3
 
-db = sqlite3.connect("inventory.db")
+db = sqlite3.connect("inventoryTable.db")
 c = db.cursor()
 #create database
 c.execute(''' CREATE TABLE "inventoryTable" (
@@ -48,14 +48,24 @@ class Inventory:
 
     # search inventory
     def search_inventory(self):
-        item = input("Enter the title of the item you'd like to find\n")
+        item = input("Enter the title of the item you'd like to find: ")
         c.execute(("SELECT * FROM inventoryTable WHERE Title=?", (item,)))
-        #finish later
+        result = c.fetchone();
+
+	#checks if exists
+        if result:
+            self.view_inventory()
+        else:
+            print("\n Search failed. Please enter a valid title. \n")
 
     # decrease stock
     def decrease_stock(self, isbn=""):
         self.isbn=isbn
-        print()
+        currStock = c.excecute(("SELECT Stock FROM inventoryTable WHERE ISBN=?",(isbn,)))
+        currStock-=1
+	
+        #update inventoryTable with new stock value
+        c.execute(("UPDATE inventoryTable SET Stock=? WHERE ISBN=?",(currStock, isbn,)))
 
     # GETTERS
     def get_db_name(self):
