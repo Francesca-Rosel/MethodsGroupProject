@@ -61,11 +61,12 @@ class Inventory:
     # decrease stock
     def decrease_stock(self, isbn=""):
         self.isbn=isbn
-        currStock = c.excecute(("SELECT Stock FROM inventoryTable WHERE ISBN=?",(isbn,)))
+        currStock = c.execute(("SELECT Stock FROM inventoryTable WHERE ISBN=?",(isbn,)))
         currStock-=1
-	
-        #update inventoryTable with new stock value
+	    
+        #update with new stock value
         c.execute(("UPDATE inventoryTable SET Stock=? WHERE ISBN=?",(currStock, isbn,)))
+	db.commit()
 
     # GETTERS
     def get_db_name(self):
