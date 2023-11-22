@@ -20,12 +20,15 @@ def main():
               break
             #View Inventory Information
             case '2': #connect to inventory class
+              inventory = Inventory()
               print("1. View Inventory\n2.Search Inventory\n3. Go back")
               option2 = input('')
               match option2:
-                case '1': #viewInventory()
+                case '1':
+                  inventory.viewInventory()
                   break
-                case '2': #searchInventory()
+                case '2': 
+                  inventory.searchInventory()
                   break
                 case '3':
                   break
