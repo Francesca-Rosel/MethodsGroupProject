@@ -8,7 +8,7 @@ db = sqlite3.connect('users.db')
 c = db.cursor()
 
 # create a table
-c.execute('''CREATE TABLE userTable (UserID TEXT PRIMARY KEY NOT NULL, Email TEXT NOT NULL, Password TEXT NOT NULL, FirstName TEXT NOT NULL, LastName TEXT NOT NULL, Address TEXT NOT NULL, City TEXT NOT NULL, State TEXT NOT NULL, Zip INT NOT NULL, Payment TEXT NOT NULL)''')
+c.execute('''CREATE TABLE IF NOT EXISTS userTable (UserID TEXT PRIMARY KEY NOT NULL, Email TEXT NOT NULL, Password TEXT NOT NULL, FirstName TEXT NOT NULL, LastName TEXT NOT NULL, Address TEXT NOT NULL, City TEXT NOT NULL, State TEXT NOT NULL, Zip INT NOT NULL, Payment TEXT NOT NULL)''')
 
 # populating with some random values from online generators
     # random values: FirstName, LastName, Address, City, State, Zip
