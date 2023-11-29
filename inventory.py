@@ -60,10 +60,9 @@ class inventory_class:
         if result:
             for thing in result:
                 print(thing)
-                print("--------")
-                print("\n")
+                print("--------\n")
         else:
-            print("\n Search failed :( \n")
+            print("\n Search failed. \n")
 
     # decrease stock
     def decrease_stock(self, isbn = ""):
