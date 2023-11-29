@@ -55,7 +55,7 @@ class Inventory:
 
         if result:
             for thing in result:
-                print(thing)
+                print("----- ", thing, "-----")
         else:
             print("\n Search failed :( \n")
 
