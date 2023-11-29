@@ -16,7 +16,6 @@ c.execute(''' CREATE TABLE IF NOT EXISTS inventoryTable (
 ); ''')
 
 #add data
-
 try:
     c.execute('''INSERT INTO inventoryTable (ISBN, Title, Author, Genre, Pages, ReleaseDate, Stock) VALUES ('9781250891211', 'A Darker Shade of Magic', 'V.E Schwab', 'Fantasy', '416', '05/16/2023', '25')''')
     c.execute('''INSERT INTO inventoryTable (ISBN, Title, Author, Genre, Pages, ReleaseDate, Stock) VALUES ('9780062484390', 'And Then There Were None', 'Agatha Christie', 'Mystery', '256', '11/06/1939', '7') ''')
@@ -84,5 +83,5 @@ class inventory_class:
     def get_table_name(self):
         return self.table
 	    
-    c.close()
-    db.close()
+    #c.close()
+    #db.close()
