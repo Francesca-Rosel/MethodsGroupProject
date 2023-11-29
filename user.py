@@ -9,14 +9,23 @@ c = db.cursor()
 
 # create a table
 c.execute('''CREATE TABLE IF NOT EXISTS userTable (UserID TEXT PRIMARY KEY NOT NULL, Email TEXT NOT NULL, Password TEXT NOT NULL, FirstName TEXT NOT NULL, LastName TEXT NOT NULL, Address TEXT NOT NULL, City TEXT NOT NULL, State TEXT NOT NULL, Zip INT NOT NULL, Payment TEXT NOT NULL)''')
+#db.commit()
+
+try:
+    c.execute('''INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('wf123', 'wfreeman1@gmail.com', 'HailState98!', 'Willie', 'Freeman', '2970 Froe St.', 'Paden City', 'West Virginia', '26159', 'PayPal')''')
+    c.execute('''INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('fg456', 'fgarret2@gmail.com', 'MikeLeach23!', 'Freyja', 'Garret', '4567 Archwood Ave.', 'Newcastle', 'Wyoming', '82701', 'Visa')''')
+    db.commit()
+except sqlite3.IntegrityError:
+    print("")
+
+#c.close()
 
 # populating with some random values from online generators
     # random values: FirstName, LastName, Address, City, State, Zip
     # FirstName, LastName came from an online generator. Possible these are real people somewhere in the world
     # Address, City, Zip are random values from an online generator given a random state. Possible these are real addresses
-c.execute('''INSERT OR IGNORE INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('wf123', 'wfreeman1@gmail.com', 'HailState98!', 'Willie', 'Freeman', '2970 Froe St.', 'Paden City', 'West Virginia', '26159', 'PayPal')''')
-c.execute('''INSERT OR IGNORE INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('fg456', 'fgarret2@gmail.com', 'MikeLeach23!', 'Freyja', 'Garret', '4567 Archwood Ave.', 'Newcastle', 'Wyoming', '82701', 'Visa')''')
-db.commit()
+#c.execute('''INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('wf123', 'wfreeman1@gmail.com', 'HailState98!', 'Willie', 'Freeman', '2970 Froe St.', 'Paden City', 'West Virginia', '26159', 'PayPal')''')
+#c.execute('''INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('fg456', 'fgarret2@gmail.com', 'MikeLeach23!', 'Freyja', 'Garret', '4567 Archwood Ave.', 'Newcastle', 'Wyoming', '82701', 'Visa')''')
 
 class user_class:
 
