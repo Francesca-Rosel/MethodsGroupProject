@@ -8,7 +8,6 @@ def main():
 
     match option:
       case '1':
-        print("login section")
         #Logged In Main Menu
         getLoggedIn()
         if (loggedIn == True):
