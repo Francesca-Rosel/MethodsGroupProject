@@ -23,7 +23,7 @@ c.execute('''INSERT INTO inventoryTable (ISBN, Title, Author, Genre, Pages, Rele
 c.execute('''INSERT INTO inventoryTable (ISBN, Title, Author, Genre, Pages, ReleaseDate, Stock) VALUES ('9780141196886', 'Dracula', 'Bram Stoker', 'Horror', '512', '05/26/1897', '5') ''')
 db.commit()
 
-class Inventory:
+class inventory_class:
     # initializes
     def _init_(self, database="", table=""):
         self.database = database
@@ -39,7 +39,7 @@ class Inventory:
         c.execute("SELECT * FROM inventoryTable")
 
         rows = c.fetchall()
-        num = 1;
+        num = 1
         for row in rows:
             print("----------\n")
             print("Book " + str(num) + ":\n")
@@ -50,13 +50,13 @@ class Inventory:
     def search_inventory(self):
         item = input("Enter the title of the item you'd like to find: ")
         c.execute("SELECT * FROM inventoryTable WHERE Title=?", (item,))
-        result = c.fetchone();
+        result = c.fetchone()
 
         if result:
             for thing in result:
                 print(thing)
-		print("--------")
-	    print("\n")
+                print("--------")
+                print("\n")
         else:
             print("\n Search failed :( \n")
 
