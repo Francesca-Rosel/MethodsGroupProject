@@ -14,8 +14,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS userTable (UserID TEXT PRIMARY KEY NOT N
     # random values: FirstName, LastName, Address, City, State, Zip
     # FirstName, LastName came from an online generator. Possible these are real people somewhere in the world
     # Address, City, Zip are random values from an online generator given a random state. Possible these are real addresses
-c.execute('''INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('wf123', 'wfreeman1@gmail.com', 'HailState98!', 'Willie', 'Freeman', '2970 Froe St.', 'Paden City', 'West Virginia', '26159', 'PayPal')''')
-c.execute('''INSERT INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('fg456', 'fgarret2@gmail.com', 'MikeLeach23!', 'Freyja', 'Garret', '4567 Archwood Ave.', 'Newcastle', 'Wyoming', '82701', 'Visa')''')
+c.execute('''INSERT OR IGNORE INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('wf123', 'wfreeman1@gmail.com', 'HailState98!', 'Willie', 'Freeman', '2970 Froe St.', 'Paden City', 'West Virginia', '26159', 'PayPal')''')
+c.execute('''INSERT OR IGNORE INTO userTable (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ('fg456', 'fgarret2@gmail.com', 'MikeLeach23!', 'Freyja', 'Garret', '4567 Archwood Ave.', 'Newcastle', 'Wyoming', '82701', 'Visa')''')
 db.commit()
 
 class user_class:
