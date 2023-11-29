@@ -6,6 +6,7 @@ def main():
   while True:
     print("Welcome to The Online Bookstore! \nPlease select a valid option. \n1.Login \n2.Create Account \n3.Exit") 
     option = input("Please choose a valid option: ")
+    print('\n')
 
     match option:
       case '1':
@@ -16,11 +17,11 @@ def main():
         while (loggedIn == True):
           print("1. View Account Information \n2. Inventory Information \n3. Cart Information\n4. Logout")
           option1 = input("Please choose a valid option: ")
+          print('\n')
           match option1:
-            #View Account Information: viewAccountInformation():
+            #View Account Information: 
             case '1': 
               strawberry.viewAccountInformation()
-              #break
             #View Inventory Information
             case '2': #connect to inventory class
               blackberry = inventory.inventory_class()
@@ -49,7 +50,7 @@ def main():
                 case '3': #removeFromCart()
                   break
                 case '4': #checkOut()
-                  break
+                  print("") #FIXME
                 case '5': #Go back
                   break
                 case _:
@@ -59,10 +60,8 @@ def main():
               break
             case _:
               print("Invalid option. Choose again.") 
-        #Failed Log In Attempt
+        #Failed Log In Attempt fails to enter while loop and leads back to main menu.
         
-        #print("TESTING AREA")
-        #break
       case '2':
         print("create account section") 
         strawberry.createAccount()
