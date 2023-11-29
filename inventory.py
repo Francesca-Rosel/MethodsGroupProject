@@ -66,6 +66,7 @@ class Inventory:
 	
         #update inventoryTable with new stock value
         c.execute(("UPDATE inventoryTable SET Stock=? WHERE ISBN=?",(currStock, isbn,)))
+	db.commit()
 
     # GETTERS
     def get_db_name(self):
