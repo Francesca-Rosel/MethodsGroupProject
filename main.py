@@ -1,4 +1,4 @@
-from user import *
+import user
 from inventory import *
 #main function
 def main(): 
