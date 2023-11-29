@@ -33,7 +33,7 @@ class Inventory:
         self.database=database
         self.table=table
 
-    # view inventory
+# view inventory
     def view_inventory(self):
         print("Inventory: \n")
         c.execute("SELECT * FROM inventoryTable")
@@ -41,32 +41,35 @@ class Inventory:
         rows = c.fetchall()
         num = 1;
         for row in rows:
-	    print("---------\n")
-            print("Book " + num + ":\n")
+            print("----------\n")
+            print("Book " + str(num) + ":\n")
             print(row[0] + " | " + row[1] + " | " + row[2] + " | " + row[3] + " | " + row[4] + " | " + row[5] + " | " + row[6] + "\n")
             num+=1
 
     # search inventory
     def search_inventory(self):
         item = input("Enter the title of the item you'd like to find: ")
-        c.execute(("SELECT * FROM inventoryTable WHERE Title=?", (item,)))
+        c.execute("SELECT * FROM inventoryTable WHERE Title=?", (item,))
         result = c.fetchone();
 
-	#checks if exists
         if result:
-            self.view_inventory()
+            for thing in result:
+                print(thing)
+		print("--------")
+	    print("\n")
         else:
-            print("\n Search failed. Please enter a valid title. \n")
+            print("\n Search failed :( \n")
 
     # decrease stock
-    def decrease_stock(self, isbn=""):
+    def decrease_stock(self, isbn = ""):
         self.isbn=isbn
-        currStock = c.excecute(("SELECT Stock FROM inventoryTable WHERE ISBN=?",(isbn,)))
-        currStock-=1
-	
-        #update inventoryTable with new stock value
-        c.execute(("UPDATE inventoryTable SET Stock=? WHERE ISBN=?",(currStock, isbn,)))
-	db.commit()
+        c.execute("SELECT Stock FROM inventoryTable WHERE ISBN=?", (isbn,))
+        currentStock = c.fetchone()
+        newStock = int(currentStock[0]) -1
+
+        #update inventory with new stock
+        c.execute(("UPDATE inventoryTable SET Stock=? WHERE ISBN=?", (newStock, isbn,)))
+        db.commit()
 
     # GETTERS
     def get_db_name(self):
@@ -74,3 +77,6 @@ class Inventory:
         
     def get_table_name(self):
         return self.table
+	    
+    c.close()
+    db.close()
