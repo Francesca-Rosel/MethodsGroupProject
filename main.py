@@ -1,5 +1,5 @@
 import user
-from inventory import *
+import inventory
 #main function
 def main(): 
   while True:
@@ -9,7 +9,7 @@ def main():
     match option:
       case '1':
         #Logged In Main Menu
-        strawberry = user_class()
+        strawberry = user.user_class()
         strawberry.login()
         loggedIn = strawberry.getLoggedIn()
         if (loggedIn == True):
@@ -22,15 +22,15 @@ def main():
               break
             #View Inventory Information
             case '2': #connect to inventory class
-              inventory = Inventory()
+              blackberry = inventory.inventory_class()
               print("1. View Inventory\n2.Search Inventory\n3. Go back")
               option2 = input('')
               match option2:
                 case '1':
-                  inventory.viewInventory()
+                  blackberry.view_inventory()
                   break
                 case '2': 
-                  inventory.searchInventory()
+                  blackberry.search_inventory()
                   break
                 case '3':
                   break
