@@ -10,13 +10,16 @@ def main():
       case '1':
         print("login section")
         #Logged In Main Menu
-        getLoggedIn()
+        strawberry = user_class()
+        strawberry.login()
+        loggedIn = strawberry.getLoggedIn()
         if (loggedIn == True):
           print("1. View Account Information \n2. Inventory Information \n3. Cart Information\n4. Logout")
           option1 = input("Please choose a valid option:")
           match option1:
             #View Account Information: viewAccountInformation():
-            case '1': #connect to User class
+            case '1': 
+              strawberry.viewAccountInformation()
               break
             #View Inventory Information
             case '2': #connect to inventory class
@@ -48,15 +51,17 @@ def main():
                 case '5':
                   break
             case '4':
+              strawberry.logout()
               break
             case _:
-              print("Invalid option. Choose again.")
+              print("Invalid option. Choose again.") 
         #Failed Log In Attempt
         else:
           print("Log In Attempt Unsuccessful.")
           break
       case '2':
-        print("create account section") #createAccount()
+        print("create account section") 
+        strawberry.createAccount()
       case '3':
         print("Thank you for shopping with us! Good-bye") 
         return False
