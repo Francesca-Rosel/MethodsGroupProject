@@ -50,9 +50,9 @@ def main():
                 case '3': #removeFromCart()
                   break
                 case '4': #checkOut()
-                  print("") #FIXME
-                case '5': #Go back
                   break
+                case '5': #Go back
+                  print("") #FIXME
                 case _:
                   print("Invalid choice. Try Again.")
             case '4':
