@@ -39,7 +39,7 @@ class Inventory:
         c.execute("SELECT * FROM inventoryTable")
 
         rows = c.fetchall()
-        num = 1;
+        num = 1
         for row in rows:
             print("----------\n")
             print("Book " + str(num) + ":\n")
