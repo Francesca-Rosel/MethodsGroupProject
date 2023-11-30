@@ -60,7 +60,7 @@ class cart_class:
         for i in range(cartInfo[num][2]):
             blackberry.decrease_stock(cartInfo[num][1])
             num += 1
-        c.execute("DELETE FROM Customer WHERE UserID =?", (userID,))
+        c.execute("DELETE FROM cartTable WHERE UserID =?", (userID,))
         db.commit()
 
         
