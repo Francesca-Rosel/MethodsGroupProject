@@ -30,7 +30,7 @@ class Cart:
     
     def viewCart(userID, inventoryTable):
         print("Shopping Cart:\n")
-        c.execute("SELECT * FROM inventoryTable INNER JOIN cartTable ON inventoryTable.ISBN = cartTable.ISBN")
+        c.execute("SELECT * FROM inventoryTable INNER JOIN cartTable ON inventoryTable.ISBN = cartTable.ISBN AND UserID =?", (userID,))
 
         rows = c.fetchall()
         num = 1
@@ -44,16 +44,14 @@ class Cart:
     def addToCart(userID, ISBN):
         attemptedISBN = input("Input ISBN of desired book: ")
         desiredQuantity = input("Number of copies: ")
-        c.execute("SELECT Stock FROM inventoryTable WHERE ISBN =?", (attemptedISBN,))
+        '''c.execute("SELECT Stock FROM inventoryTable WHERE ISBN =?", (attemptedISBN,))
         available = c.fetchone()
         while (desiredQuantity > int(available[0])):
             print("Error. Not Enough Stock. Please choose less than ", available)
             desiredQuantity = input("Number of copies: ")
-        
-        c.execute("SELECT IBSN FROM inventoryTable WHERE ISBN =?", (attemptedISBN,))
+        '''
         c.execute("INSERT INTO cartTable (UserID, ISBN, Quantity)")
-        c.execute("INSERT INTO cartTable SET Quantity = 'Dr. Smith' INSERT INTO tab_student SET name_student = 'Bobby Tables', id_teacher_fk = LAST_INSERT_ID()")
-        
+        c.execute()
         return None
     
     def removeFromCart(userID, ISBN):
@@ -61,10 +59,11 @@ class Cart:
     
     def checkOut(userID):
         blackberry = inventory.inventory_class()
+        c.execute("SELECT * FROM cartTable WHERE UserID =?", (userID,))
         cartInfo = c.fetchall()
         num = 0
-        for i in range(cartInfo[num][3]):
-            blackberry.decrease_stock(cartInfo[num][2])
+        for i in range(cartInfo[num][2]):
+            blackberry.decrease_stock(cartInfo[num][1])
             num += 1
         
         return None
