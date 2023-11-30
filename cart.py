@@ -4,7 +4,7 @@ import sqlite3
 import inventory 
 
 #connecting to the database
-db = sqlite3.connect("cartTable.db")
+db = sqlite3.connect("cartitems.db")
 c = db.cursor()
 
 #create database
@@ -23,16 +23,23 @@ class cart_class:
         self.tableName = 'cartTable'
     
     def viewCart(self, userID, inventoryDatabase):
-        try:
-            db1 = sqlite3.connect("inventoryTable.db")
-        except:
-            db1.close()
+        
+        #conn = sqlite3.connect("Inventory.db", "cartitems.db")
+        #c = conn.cursor()
+        #except:
+            #conn.exit()
+        conn_main = sqlite3.connect('Inventory.db')
+        c_main = conn_main.cursor()
+
+        #I tried so hard trying to figure this out please have mercy on me. 
 
         print("Shopping Cart:\n")
-        c.execute("SELECT * FROM inventoryTable INNER JOIN cartTable ON inventoryTable.ISBN = cartTable.ISBN AND UserID =?", (userID,))
+        #c.execute("SELECT * FROM inventoryTable INNER JOIN cartTable ON inventoryTable.ISBN = cartTable.ISBN AND UserID =?", (userID,))
+        c_main.execute("""SELECT * FROM inventoryTable INNER JOIN cartitems.cartTable ON inventoryTable.ISBN = cartitems.cartTable.ISBN AND cartitems.cartTable.UserID =?""", (userID,))
         db.commit()
 
-        rows = c.fetchall()
+        #rows = c.fetchall()
+        rows = c_main.fetchall()
         num = 1
         for row in rows:
             print("----------\n")
