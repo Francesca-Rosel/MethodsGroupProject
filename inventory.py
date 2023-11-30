@@ -1,7 +1,7 @@
 # inventory class - Amelia
 import sqlite3
 
-db = sqlite3.connect("inventoryTable.db")
+db = sqlite3.connect("Inventory.db")
 c = db.cursor()
 #create database
 c.execute(''' CREATE TABLE IF NOT EXISTS inventoryTable (
@@ -35,8 +35,8 @@ class inventory_class:
         self.table = table
 
     def Inventory(self, database, table):
-        self.database=database
-        self.table=table
+        self.database= 'Inventory.db'
+        self.table= 'inventoryTable'
 
 # view inventory
     def view_inventory(self):
