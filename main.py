@@ -45,7 +45,8 @@ def main():
               option3 = input("Choose a valid option: ")
               match option3:
                 case '1': 
-                  blueberry.viewCart(userID)
+                  inventoryDatabase = 'Inventory.db'
+                  blueberry.viewCart(userID, inventoryDatabase)
                 case '2': 
                   ISBN_add = input("Input ISBN of desired book: ")
                   blueberry.addToCart(userID, ISBN_add)
