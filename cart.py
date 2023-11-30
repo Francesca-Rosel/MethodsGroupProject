@@ -23,8 +23,14 @@ class cart_class:
         self.tableName = 'cartTable'
     
     def viewCart(self, userID, inventoryDatabase):
+        try:
+            db1 = sqlite3.connect("inventoryTable.db")
+        except:
+            db1.close()
+
         print("Shopping Cart:\n")
         c.execute("SELECT * FROM inventoryTable INNER JOIN cartTable ON inventoryTable.ISBN = cartTable.ISBN AND UserID =?", (userID,))
+        db.commit()
 
         rows = c.fetchall()
         num = 1
@@ -38,11 +44,12 @@ class cart_class:
     def addToCart(self, userID, ISBN):
         desiredQuantity = input("Number of copies: ")
         c.execute("INSERT INTO cartTable VALUES(?, ?, ?)", (userID, ISBN, desiredQuantity))
-        
-        
+        db.commit()
+      
     
     def removeFromCart(self, userID, ISBN):
         c.execute("DELETE FROM cartTable WHERE UserID =? AND ISBN =?", (userID, ISBN))
+        db.commit()
         return None
     
     def checkOut(self, userID):
@@ -54,5 +61,6 @@ class cart_class:
             blackberry.decrease_stock(cartInfo[num][1])
             num += 1
         c.execute("DELETE FROM Customer WHERE UserID =?", (userID,))
+        db.commit()
 
         
