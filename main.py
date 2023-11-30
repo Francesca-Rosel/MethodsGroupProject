@@ -1,5 +1,6 @@
 import user
 import inventory
+import cart
 #main function
 
 def main(): 
@@ -30,27 +31,29 @@ def main():
               match option2:
                 case '1':
                   blackberry.view_inventory()
-                  break
                 case '2': 
                   blackberry.search_inventory()
-                  break
                 case '3': #Go back
                   print("") #FIXME
                 case _:
                   print("Invalid choice. Try Again.")
             #View Cart Information
             case '3': #connect to cart class
+              blueberry = cart.cart_class()
+              userID = strawberry.getUserID()
               print("1. View Cart\n2. Add Items to Cart\n3. Remove an Item from Cart\n4. Check Out\n5. Go back")
-              option3 = input('')
+              option3 = input("Choose a valid option: ")
               match option3:
-                case '1': #viewCart()
-                  break
-                case '2': #addToCart()
-                  break
-                case '3': #removeFromCart()
-                  break
-                case '4': #checkOut()
-                  break
+                case '1': 
+                  blueberry.viewCart(userID)
+                case '2': 
+                  ISBN_add = input("Input ISBN of desired book: ")
+                  blueberry.addToCart(userID, ISBN_add)
+                case '3': 
+                  ISBN_rem = input("Input ISBN of book to remove: ")
+                  blueberry.removeFromCart(userID, ISBN_rem)
+                case '4': 
+                  blueberry.checkOut(userID)
                 case '5': #Go back
                   print("") #FIXME
                 case _:
@@ -61,9 +64,7 @@ def main():
             case _:
               print("Invalid option. Choose again.") 
         #Failed Log In Attempt fails to enter while loop and leads back to main menu.
-        
       case '2':
-        print("create account section") 
         strawberry.createAccount()
       case '3':
         print("Thank you for shopping with us! Good-bye") 
